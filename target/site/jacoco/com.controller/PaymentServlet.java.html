@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PaymentServlet.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">user-web-app Maven Webapp</a> &gt; <a href="index.source.html" class="el_package">com.controller</a> &gt; <span class="el_source">PaymentServlet.java</span></div><h1>PaymentServlet.java</h1><pre class="source lang-java linenums">package com.controller;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.Map;
+
+@WebServlet(&quot;/PaymentServlet&quot;)
+<span class="nc" id="L13">public class PaymentServlet extends HttpServlet {</span>
+    
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+        
+        // Get payment form data
+<span class="nc" id="L20">        String cardName = request.getParameter(&quot;cardName&quot;);</span>
+<span class="nc" id="L21">        String cardNumber = request.getParameter(&quot;cardNumber&quot;);</span>
+<span class="nc" id="L22">        String expiryDate = request.getParameter(&quot;expiryDate&quot;);</span>
+<span class="nc" id="L23">        String cvv = request.getParameter(&quot;cvv&quot;);</span>
+        
+        // Basic validation
+<span class="nc bnc" id="L26" title="All 8 branches missed.">        if (cardName == null || cardNumber == null || expiryDate == null || cvv == null ||</span>
+<span class="nc bnc" id="L27" title="All 4 branches missed.">            cardName.trim().isEmpty() || cardNumber.trim().isEmpty() || </span>
+<span class="nc bnc" id="L28" title="All 4 branches missed.">            expiryDate.trim().isEmpty() || cvv.trim().isEmpty()) {</span>
+            
+<span class="nc" id="L30">            response.sendRedirect(&quot;Payment.jsp?error=invalid&quot;);</span>
+<span class="nc" id="L31">            return;</span>
+        }
+        
+        try {
+            // Process payment (this is where you would integrate with a payment gateway)
+<span class="nc" id="L36">            boolean paymentSuccess = processPayment(cardNumber, expiryDate, cvv);</span>
+            
+<span class="nc bnc" id="L38" title="All 2 branches missed.">            if (paymentSuccess) {</span>
+                // Clear the cart after successful payment
+<span class="nc" id="L40">                HttpSession session = request.getSession();</span>
+<span class="nc" id="L41">                session.removeAttribute(&quot;cart&quot;);</span>
+                
+                // Redirect to confirmation page
+<span class="nc" id="L44">                response.sendRedirect(&quot;orderConfirmation.jsp&quot;);</span>
+<span class="nc" id="L45">            } else {</span>
+<span class="nc" id="L46">                response.sendRedirect(&quot;Payment.jsp?error=failed&quot;);</span>
+            }
+            
+<span class="nc" id="L49">        } catch (Exception e) {</span>
+<span class="nc" id="L50">            e.printStackTrace();</span>
+<span class="nc" id="L51">            response.sendRedirect(&quot;Payment.jsp?error=system&quot;);</span>
+<span class="nc" id="L52">        }</span>
+<span class="nc" id="L53">    }</span>
+    
+    private boolean processPayment(String cardNumber, String expiryDate, String cvv) {
+        // This is a dummy implementation
+        // In a real application, you would integrate with a payment gateway
+        // and perform actual payment processing
+        
+        // For demonstration, we'll just validate the card number length
+<span class="nc bnc" id="L61" title="All 2 branches missed.">        if (cardNumber.length() == 16) {</span>
+<span class="nc" id="L62">            return true;</span>
+        }
+<span class="nc" id="L64">        return false;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

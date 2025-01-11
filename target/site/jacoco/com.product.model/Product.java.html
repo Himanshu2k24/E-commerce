@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Product.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">user-web-app Maven Webapp</a> &gt; <a href="index.source.html" class="el_package">com.product.model</a> &gt; <span class="el_source">Product.java</span></div><h1>Product.java</h1><pre class="source lang-java linenums">package com.product.model;
+
+public class Product {
+    private int id;
+    private String name;
+    private String description;
+    private double price;
+    private double mrp;
+    private String imageUrl;
+    
+<span class="fc" id="L11">    public Product() {}</span>
+    
+<span class="fc" id="L13">    public Product(int id, String name, String description, double price, double mrp, String imageUrl) {</span>
+<span class="fc" id="L14">        this.id = id;</span>
+<span class="fc" id="L15">        this.name = name;</span>
+<span class="fc" id="L16">        this.description = description;</span>
+<span class="fc" id="L17">        this.price = price;</span>
+<span class="fc" id="L18">        this.mrp = mrp;</span>
+<span class="fc" id="L19">        this.imageUrl = imageUrl;</span>
+<span class="fc" id="L20">    }</span>
+    
+    // Getters and Setters
+<span class="nc" id="L23">    public int getId() { return id; }</span>
+<span class="nc" id="L24">    public void setId(int id) { this.id = id; }</span>
+    
+<span class="fc" id="L26">    public String getName() { return name; }</span>
+<span class="fc" id="L27">    public void setName(String name) { this.name = name; }</span>
+    
+<span class="fc" id="L29">    public String getDescription() { return description; }</span>
+<span class="fc" id="L30">    public void setDescription(String description) { this.description = description; }</span>
+    
+<span class="fc" id="L32">    public double getPrice() { return price; }</span>
+<span class="fc" id="L33">    public void setPrice(double price) { this.price = price; }</span>
+    
+<span class="fc" id="L35">    public double getMrp() { return mrp; }</span>
+<span class="fc" id="L36">    public void setMrp(double mrp) { this.mrp = mrp; }</span>
+    
+<span class="fc" id="L38">    public String getImageUrl() { return imageUrl; }</span>
+<span class="fc" id="L39">    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

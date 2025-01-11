@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CartDAO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">user-web-app Maven Webapp</a> &gt; <a href="index.source.html" class="el_package">com.cart.dao</a> &gt; <span class="el_source">CartDAO.java</span></div><h1>CartDAO.java</h1><pre class="source lang-java linenums">package com.cart.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.cart.model.Cart;
+
+public class CartDAO {
+    private Connection conn;
+
+<span class="fc" id="L15">    public CartDAO(Connection conn) {</span>
+<span class="fc" id="L16">        this.conn = conn;</span>
+<span class="fc" id="L17">    }</span>
+
+    // Add item to cart
+    public boolean addToCart(Cart cart) throws SQLException {
+<span class="fc" id="L21">        String sql = &quot;INSERT INTO cart (user_id, product_id, quantity, total_price) VALUES (?, ?, ?, ?)&quot;;</span>
+<span class="fc" id="L22">        try (PreparedStatement stmt = conn.prepareStatement(sql)) {</span>
+<span class="fc" id="L23">            stmt.setInt(1, cart.getUserId());</span>
+<span class="fc" id="L24">            stmt.setInt(2, cart.getProductId());</span>
+<span class="fc" id="L25">            stmt.setInt(3, cart.getQuantity());</span>
+<span class="fc" id="L26">            stmt.setDouble(4, cart.getTotalPrice());</span>
+<span class="pc bpc" id="L27" title="1 of 2 branches missed.">            return stmt.executeUpdate() &gt; 0;</span>
+        }
+    }
+
+    // Get cart items by user ID
+    public List&lt;Cart&gt; getCartItems(int userId) throws SQLException {
+<span class="fc" id="L33">        List&lt;Cart&gt; cartItems = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L34">        String sql = &quot;SELECT * FROM cart WHERE user_id = ?&quot;;</span>
+<span class="fc" id="L35">        try (PreparedStatement stmt = conn.prepareStatement(sql)) {</span>
+<span class="fc" id="L36">            stmt.setInt(1, userId);</span>
+<span class="fc" id="L37">            ResultSet rs = stmt.executeQuery();</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">            while (rs.next()) {</span>
+<span class="fc" id="L39">                Cart cart = new Cart();</span>
+<span class="fc" id="L40">                cart.setCartId(rs.getInt(&quot;cart_id&quot;));</span>
+<span class="fc" id="L41">                cart.setUserId(rs.getInt(&quot;user_id&quot;));</span>
+<span class="fc" id="L42">                cart.setProductId(rs.getInt(&quot;product_id&quot;));</span>
+<span class="fc" id="L43">                cart.setQuantity(rs.getInt(&quot;quantity&quot;));</span>
+<span class="fc" id="L44">                cart.setTotalPrice(rs.getDouble(&quot;total_price&quot;));</span>
+<span class="fc" id="L45">                cartItems.add(cart);</span>
+<span class="fc" id="L46">            }</span>
+        }
+<span class="fc" id="L48">        return cartItems;</span>
+    }
+
+    // Update cart item quantity
+    public boolean updateQuantity(int cartId, int quantity, double totalPrice) throws SQLException {
+<span class="fc" id="L53">        String sql = &quot;UPDATE cart SET quantity = ?, total_price = ? WHERE cart_id = ?&quot;;</span>
+<span class="fc" id="L54">        try (PreparedStatement stmt = conn.prepareStatement(sql)) {</span>
+<span class="fc" id="L55">            stmt.setInt(1, quantity);</span>
+<span class="fc" id="L56">            stmt.setDouble(2, totalPrice);</span>
+<span class="fc" id="L57">            stmt.setInt(3, cartId);</span>
+<span class="pc bpc" id="L58" title="1 of 2 branches missed.">            return stmt.executeUpdate() &gt; 0;</span>
+        }
+    }
+
+    // Remove item from cart
+    public boolean removeFromCart(int cartId) throws SQLException {
+<span class="fc" id="L64">        String sql = &quot;DELETE FROM cart WHERE cart_id = ?&quot;;</span>
+<span class="fc" id="L65">        try (PreparedStatement stmt = conn.prepareStatement(sql)) {</span>
+<span class="fc" id="L66">            stmt.setInt(1, cartId);</span>
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">            return stmt.executeUpdate() &gt; 0;</span>
+        }
+    }
+
+    // Clear cart for a user
+    public boolean clearCart(int userId) throws SQLException {
+<span class="fc" id="L73">        String sql = &quot;DELETE FROM cart WHERE user_id = ?&quot;;</span>
+<span class="fc" id="L74">        try (PreparedStatement stmt = conn.prepareStatement(sql)) {</span>
+<span class="fc" id="L75">            stmt.setInt(1, userId);</span>
+<span class="pc bpc" id="L76" title="1 of 2 branches missed.">            return stmt.executeUpdate() &gt; 0;</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

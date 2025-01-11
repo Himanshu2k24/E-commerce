@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserServlet.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">user-web-app Maven Webapp</a> &gt; <a href="index.source.html" class="el_package">com.controller</a> &gt; <span class="el_source">UserServlet.java</span></div><h1>UserServlet.java</h1><pre class="source lang-java linenums">package com.controller;
+
+import java.io.IOException;
+
+import com.user.dao.UserDAO;
+import com.user.model.User;
+import com.user.util.DBConnection;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+@WebServlet(&quot;/UserServlet&quot;)
+<span class="nc" id="L17">public class UserServlet extends HttpServlet {</span>
+    private static final long serialVersionUID = 1L;
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+<span class="nc" id="L22">        String action = request.getParameter(&quot;action&quot;);</span>
+        
+        try {
+<span class="nc bnc" id="L25" title="All 2 branches missed.">            if (&quot;register&quot;.equals(action)) {</span>
+<span class="nc" id="L26">                User user = new User();</span>
+<span class="nc" id="L27">                user.setUsername(request.getParameter(&quot;username&quot;));</span>
+<span class="nc" id="L28">                user.setName(request.getParameter(&quot;name&quot;));</span>
+<span class="nc" id="L29">                user.setEmail(request.getParameter(&quot;email&quot;));</span>
+<span class="nc" id="L30">                user.setPassword(request.getParameter(&quot;password&quot;));</span>
+<span class="nc" id="L31">                user.setAddress(request.getParameter(&quot;address&quot;));</span>
+
+<span class="nc" id="L33">                UserDAO userDAO = new UserDAO(DBConnection.getConnection());</span>
+<span class="nc" id="L34">                userDAO.addUser(user);</span>
+<span class="nc" id="L35">                response.sendRedirect(&quot;login.jsp?registered=true&quot;);</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">            } else if (&quot;login&quot;.equals(action)) {</span>
+<span class="nc" id="L37">                String email = request.getParameter(&quot;email&quot;);</span>
+<span class="nc" id="L38">                String password = request.getParameter(&quot;password&quot;);</span>
+                
+<span class="nc" id="L40">                UserDAO userDAO = new UserDAO(DBConnection.getConnection());</span>
+<span class="nc" id="L41">                User user = userDAO.getUserByEmail(email, password);</span>
+                
+<span class="nc bnc" id="L43" title="All 2 branches missed.">                if (user != null) {</span>
+<span class="nc" id="L44">                    HttpSession session = request.getSession();</span>
+<span class="nc" id="L45">                    session.setAttribute(&quot;user&quot;, user);</span>
+<span class="nc" id="L46">                    response.sendRedirect(request.getContextPath() + &quot;/products&quot;);</span>
+<span class="nc" id="L47">                    return;</span>
+                } else {
+<span class="nc" id="L49">                    response.sendRedirect(&quot;login.jsp?error=true&quot;);</span>
+                }
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            } else if (&quot;updateProfile&quot;.equals(action)) {</span>
+<span class="nc" id="L52">                HttpSession session = request.getSession();</span>
+<span class="nc" id="L53">                User user = (User) session.getAttribute(&quot;user&quot;);</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">                if (user != null) {</span>
+<span class="nc" id="L55">                    user.setName(request.getParameter(&quot;name&quot;));</span>
+<span class="nc" id="L56">                    user.setEmail(request.getParameter(&quot;email&quot;));</span>
+<span class="nc" id="L57">                    user.setPassword(request.getParameter(&quot;password&quot;));</span>
+<span class="nc" id="L58">                    user.setAddress(request.getParameter(&quot;address&quot;));</span>
+
+<span class="nc" id="L60">                    UserDAO userDAO = new UserDAO(DBConnection.getConnection());</span>
+<span class="nc" id="L61">                    userDAO.updateUser(user);</span>
+<span class="nc" id="L62">                    session.setAttribute(&quot;user&quot;, user);</span>
+<span class="nc" id="L63">                    response.sendRedirect(&quot;profile.jsp?updated=true&quot;);</span>
+<span class="nc" id="L64">                } else {</span>
+<span class="nc" id="L65">                    response.sendRedirect(&quot;login.jsp&quot;);</span>
+                }
+<span class="nc bnc" id="L67" title="All 2 branches missed.">            } else if (&quot;logout&quot;.equals(action)) {</span>
+<span class="nc" id="L68">                HttpSession session = request.getSession();</span>
+<span class="nc" id="L69">                session.invalidate();</span>
+<span class="nc" id="L70">                response.sendRedirect(&quot;login.jsp&quot;);</span>
+            }
+<span class="nc" id="L72">        } catch (Exception e) {</span>
+<span class="nc" id="L73">            throw new ServletException(e);</span>
+<span class="nc" id="L74">        }</span>
+<span class="nc" id="L75">    }</span>
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+<span class="nc" id="L80">        String action = request.getParameter(&quot;action&quot;);</span>
+        
+        try {
+<span class="nc bnc" id="L83" title="All 2 branches missed.">            if (&quot;viewProfile&quot;.equals(action)) {</span>
+<span class="nc" id="L84">                HttpSession session = request.getSession();</span>
+<span class="nc" id="L85">                User user = (User) session.getAttribute(&quot;user&quot;);</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">                if (user != null) {</span>
+<span class="nc" id="L87">                    request.setAttribute(&quot;user&quot;, user);</span>
+<span class="nc" id="L88">                    request.getRequestDispatcher(&quot;profile.jsp&quot;).forward(request, response);</span>
+                } else {
+<span class="nc" id="L90">                    response.sendRedirect(&quot;login.jsp&quot;);</span>
+                }
+<span class="nc bnc" id="L92" title="All 2 branches missed.">            } else if (&quot;listUsers&quot;.equals(action)) {</span>
+<span class="nc" id="L93">                UserDAO userDAO = new UserDAO(DBConnection.getConnection());</span>
+<span class="nc" id="L94">                request.setAttribute(&quot;users&quot;, userDAO.getAllUsers());</span>
+<span class="nc" id="L95">                request.getRequestDispatcher(&quot;users.jsp&quot;).forward(request, response);</span>
+<span class="nc" id="L96">            } else {</span>
+<span class="nc" id="L97">                response.sendError(HttpServletResponse.SC_NOT_FOUND, &quot;Invalid action&quot;);</span>
+            }
+<span class="nc" id="L99">        } catch (Exception e) {</span>
+<span class="nc" id="L100">            throw new ServletException(e);</span>
+<span class="nc" id="L101">        }</span>
+<span class="nc" id="L102">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

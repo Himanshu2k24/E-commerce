@@ -1,0 +1,13 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+user-web-app Maven Webapp,com.cart.model,Cart,18,38,0,0,7,11,1,11,1,11
+user-web-app Maven Webapp,com.user.dao,UserDAO,5,269,8,12,1,72,8,9,0,7
+user-web-app Maven Webapp,com.cart.dao,CartDAO,4,163,4,6,0,39,4,7,0,6
+user-web-app Maven Webapp,com.product.dao,ProductDAO,0,103,2,6,0,33,2,5,0,3
+user-web-app Maven Webapp,com.product.model,Product,7,59,0,0,2,19,2,12,2,12
+user-web-app Maven Webapp,com.controller,CartServlet,87,0,4,0,28,0,4,0,2,0
+user-web-app Maven Webapp,com.controller,ProductServlet,122,0,12,0,34,0,9,0,3,0
+user-web-app Maven Webapp,com.controller,PaymentServlet,84,0,20,0,25,0,13,0,3,0
+user-web-app Maven Webapp,com.controller,RemoveFromCartServlet,36,0,0,0,12,0,2,0,2,0
+user-web-app Maven Webapp,com.controller,UserServlet,235,0,18,0,63,0,12,0,3,0
+user-web-app Maven Webapp,com.user.model,User,11,65,0,0,3,21,3,13,3,13
+user-web-app Maven Webapp,com.user.util,DBConnection,35,0,0,0,12,0,2,0,2,0

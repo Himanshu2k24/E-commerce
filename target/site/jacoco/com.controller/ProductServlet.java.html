@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProductServlet.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">user-web-app Maven Webapp</a> &gt; <a href="index.source.html" class="el_package">com.controller</a> &gt; <span class="el_source">ProductServlet.java</span></div><h1>ProductServlet.java</h1><pre class="source lang-java linenums">package com.controller;
+
+import com.product.dao.ProductDAO;
+import com.product.model.Product;
+import com.user.util.DBConnection;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.sql.Connection;
+import java.util.List;
+  
+@WebServlet(name = &quot;ProductServlet&quot;, urlPatterns = {&quot;/products&quot;, &quot;/home&quot;})
+<span class="nc" id="L16">public class ProductServlet extends HttpServlet {</span>
+    
+    @Override
+    public void init() throws ServletException {
+<span class="nc" id="L20">        super.init();</span>
+        // Test database connection on servlet initialization
+<span class="nc" id="L22">        try (Connection conn = DBConnection.getConnection()) {</span>
+<span class="nc" id="L23">            System.out.println(&quot;Servlet initialization - Database connection test successful&quot;);</span>
+<span class="nc" id="L24">        } catch (Exception e) {</span>
+<span class="nc" id="L25">            System.err.println(&quot;Servlet initialization - Database connection test failed: &quot; + e.getMessage());</span>
+<span class="nc" id="L26">            throw new ServletException(&quot;Database connection failed during servlet initialization&quot;, e);</span>
+<span class="nc" id="L27">        }</span>
+<span class="nc" id="L28">    }</span>
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+<span class="nc" id="L33">        System.out.println(&quot;ProductServlet doGet method called&quot;);</span>
+        
+        // Check if user is logged in
+<span class="nc" id="L36">        Object user = request.getSession().getAttribute(&quot;user&quot;);</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">        System.out.println(&quot;User in session: &quot; + (user != null ? &quot;yes&quot; : &quot;no&quot;));</span>
+        
+<span class="nc" id="L39">        Connection conn = null;</span>
+        try {
+<span class="nc" id="L41">            conn = DBConnection.getConnection();</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">            if (conn == null) {</span>
+<span class="nc" id="L43">                throw new ServletException(&quot;Database connection failed&quot;);</span>
+            }
+            
+<span class="nc" id="L46">            ProductDAO productDAO = new ProductDAO(conn);</span>
+<span class="nc" id="L47">            List&lt;Product&gt; products = productDAO.getAllProducts();</span>
+            
+<span class="nc bnc" id="L49" title="All 2 branches missed.">            System.out.println(&quot;Products found: &quot; + (products != null ? products.size() : &quot;null&quot;));</span>
+            
+<span class="nc bnc" id="L51" title="All 4 branches missed.">            if (products != null &amp;&amp; !products.isEmpty()) {</span>
+<span class="nc" id="L52">                request.setAttribute(&quot;products&quot;, products);</span>
+            } else {
+<span class="nc" id="L54">                request.setAttribute(&quot;error&quot;, &quot;No products available&quot;);</span>
+            }
+            
+            // Always forward to index.jsp
+<span class="nc" id="L58">            request.getRequestDispatcher(&quot;/index.jsp&quot;).forward(request, response);</span>
+            
+<span class="nc" id="L60">        } catch (Exception e) {</span>
+<span class="nc" id="L61">            System.err.println(&quot;Error in ProductServlet: &quot; + e.getMessage());</span>
+<span class="nc" id="L62">            e.printStackTrace();</span>
+<span class="nc" id="L63">            request.setAttribute(&quot;error&quot;, &quot;Error loading products: &quot; + e.getMessage());</span>
+<span class="nc" id="L64">            request.getRequestDispatcher(&quot;/index.jsp&quot;).forward(request, response);</span>
+        } finally {
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            if (conn != null) {</span>
+                try {
+<span class="nc" id="L68">                    conn.close();</span>
+<span class="nc" id="L69">                } catch (Exception e) {</span>
+<span class="nc" id="L70">                    System.err.println(&quot;Error closing connection: &quot; + e.getMessage());</span>
+<span class="nc" id="L71">                }</span>
+            }
+        }
+<span class="nc" id="L74">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
