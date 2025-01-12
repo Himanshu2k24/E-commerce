@@ -60,6 +60,9 @@ This repository hosts the code for a Java e-commerce Website. This application a
    │   │   ├── java/
    │   │   │   ├── com/
    │   │   │   │   ├── controller/
+   |   |   |   |   |── Cart
+   |   |   |   |   |    |── dao/
+   |   |   |   |   |    |── model/
    │   │   │   │   ├── Order/
    │   │   │   │   |  |___ model/
    │   │   │   │   |  |___ dao/
@@ -69,9 +72,10 @@ This repository hosts the code for a Java e-commerce Website. This application a
    │   │   │   │   ├── User/
    │   │   │   │      |___ model/
    │   │   │   │      |___ dao/
+   |   |   |   |      |── util/
    │   │   │   │   
-   │   │   ├─── resources/
    │   │   ├─── webapp/
+   |   |   |   |── image/
    │   │   │   ├── WEB-INF/
    │   │   │   │ └── web.xml
    │   │   │   ├── index.jsp
@@ -80,6 +84,9 @@ This repository hosts the code for a Java e-commerce Website. This application a
    │   │   │   ├── register.jsp
    │   │   │   ├── styles.css
    │   │   │   └── scripts.js
+   |   |   |   |── cart.jsp
+   |   |   |   |── payment.jsp
+   |   |   |   |── orderconfirmation.jsp
    │   ├── test/
    │   │ └── java/
    ├── pom.xml
