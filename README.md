@@ -93,7 +93,7 @@ This repository hosts the code for a Java e-commerce Website. This application a
    └── README.md
 ```
 ## 📺 Perform Through Video
-(https://github.com/user-attachments/assets/75bd49e4-b0e4-4d84-8ff7-899f9e4fe48e)
+![Perform video](https://github.com/user-attachments/assets/75bd49e4-b0e4-4d84-8ff7-899f9e4fe48e)
 
 ## 📸 Screenshot
 ### Index Page
