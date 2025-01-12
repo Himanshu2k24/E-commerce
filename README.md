@@ -92,5 +92,3 @@ This repository hosts the code for a Java e-commerce Website. This application a
    ├── pom.xml
    └── README.md
 
-#Step Wise Photo
-https://github.com/Himanshu2k24/E-commerce/blob/main/Perform/Image/Index%20Page.png
