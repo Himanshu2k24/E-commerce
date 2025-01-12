@@ -37,21 +37,21 @@ This repository hosts the code for a Java e-commerce Website. This application a
 ### 2.Create the required tables:
     - See schema.sql
 ## Installation & Setup
-# 1.Clone the repository:
+### 1.Clone the repository:
     git clone https://github.com/Himanshu2k24/E-Commerce_Web.git 
-# 2.Configure database connection:
+### 2.Configure database connection:
      -  Open src/main/java/com/user/dao/UserDao.java 
      -  Update the database URL, username, and password in other DAO classes
-# 3. Build the project:
+### 3. Build the project:
      mvn clean install
-# 4. Deploy to Tomcat:
+### 4. Deploy to Tomcat:
     -  Copy the WAR file target\user-web-app.war to Tomcat's webapps directory
     -  Start Tomcat server
 
-# 5. Access the application:
+### 5. Access the application:
     http://localhost:8080/user-web-app 
 
-## Project Structure
+### Project Structure
 
   📁 E- Commerce Website
 
