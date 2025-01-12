@@ -92,11 +92,21 @@ This repository hosts the code for a Java e-commerce Website. This application a
    ├── pom.xml
    └── README.md
 ```
+## 📺 Perform Through Video
+(https://github.com/user-attachments/assets/75bd49e4-b0e4-4d84-8ff7-899f9e4fe48e)
+
+## 📸 Screenshot
+### Index Page
 ![Index Page](https://github.com/user-attachments/assets/3a094e4d-f284-4012-8fe9-e06e5fa9fd30)
-![Register Page](https://github.com/user-attachments/assets/1ebec300-2255-4e01-a350-7a850400afac)
+### Index Page Scroll
 ![Index Page Scroll](https://github.com/user-attachments/assets/b23e91f8-cd4a-41ca-8ba5-0a657064db01)
-![Payment Confirmation Page](https://github.com/user-attachments/assets/f90b4cff-45c8-4d87-af41-b541aa7af180)
-![Payment Page](https://github.com/user-attachments/assets/1def4afb-de77-4d23-8fb8-ff00286fed22)
-![Cart Page](https://github.com/user-attachments/assets/3a6db967-bad2-4bb8-a001-b7d041dbe3dc)
-![Index Page Scroll More](https://github.com/user-attachments/assets/f6f17a4c-0715-4516-8f69-1d144d718e8b)
+### Register Page
+![Register Page](https://github.com/user-attachments/assets/1ebec300-2255-4e01-a350-7a850400afac)
+### Login Page
 ![Login Page](https://github.com/user-attachments/assets/6132d4b9-cb76-4c72-9138-a4548451960a)
+### Cart Page
+![Cart Page](https://github.com/user-attachments/assets/3a6db967-bad2-4bb8-a001-b7d041dbe3dc)
+### Payment Page
+![Payment Page](https://github.com/user-attachments/assets/1def4afb-de77-4d23-8fb8-ff00286fed22)
+### Payment Confirmation Page
+![Payment Confirmation Page](https://github.com/user-attachments/assets/f90b4cff-45c8-4d87-af41-b541aa7af180)
