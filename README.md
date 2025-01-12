@@ -91,7 +91,7 @@ This repository hosts the code for a Java e-commerce Website. This application a
    │   │ └── java/
    ├── pom.xml
    └── README.md
-
+```
 ![Index Page](https://github.com/user-attachments/assets/3a094e4d-f284-4012-8fe9-e06e5fa9fd30)
 ![Register Page](https://github.com/user-attachments/assets/1ebec300-2255-4e01-a350-7a850400afac)
 ![Index Page Scroll](https://github.com/user-attachments/assets/b23e91f8-cd4a-41ca-8ba5-0a657064db01)
