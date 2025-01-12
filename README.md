@@ -32,9 +32,9 @@ This repository hosts the code for a Java e-commerce Website. This application a
 - IDE (Eclipse)
 ## 🚀 Database Setup
 
-# 1. Create a new MySQL database:
+### 1. Create a new MySQL database:
     - See schema.sql
-# 2.Create the required tables:
+### 2.Create the required tables:
     - See schema.sql
 ## Installation & Setup
 # 1.Clone the repository:
