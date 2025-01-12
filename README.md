@@ -6,7 +6,7 @@ This repository hosts the code for a Java e-commerce Website. This application a
 - User Profile
 - Cart Option
 - Payment option through Credit Card
-## Technology Stack
+## 🛠️ Technology Stack
 ### Frontend
 - JSP (JavaServer Pages)
 - HTML5
@@ -24,13 +24,13 @@ This repository hosts the code for a Java e-commerce Website. This application a
 - jQuery
 - Font Awesome
 - MySQL Connector/J
-### Prerequisites
+### ⚙️ Prerequisites
 - JDK 11 or higher
 - Apache Tomcat 11.0
 - MySQL 8.0
 - Maven 3.x
 - IDE (Eclipse)
-## Database Setup
+## 🚀 Database Setup
 
 # 1. Create a new MySQL database:
     - See schema.sql
@@ -53,7 +53,7 @@ This repository hosts the code for a Java e-commerce Website. This application a
 
 ## Project Structure
 
-   E- Commerce Website
+  📁 E- Commerce Website
 
 ```   ├── src/
    │   ├── main/
